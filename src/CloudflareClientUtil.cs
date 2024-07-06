@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using CloudFlare.Client;
 using CloudFlare.Client.Api.Authentication;
@@ -32,9 +33,9 @@ public class CloudflareClientUtil : ICloudflareClientUtil
         });
     }
 
-    public ValueTask<CloudFlareClient> Get()
+    public ValueTask<CloudFlareClient> Get(CancellationToken cancellationToken = default)
     {
-        return _client.Get();
+        return _client.Get(cancellationToken);
     }
 
     public void Dispose()
@@ -44,10 +45,10 @@ public class CloudflareClientUtil : ICloudflareClientUtil
         _client.Dispose();
     }
 
-    public async ValueTask DisposeAsync()
+    public ValueTask DisposeAsync()
     {
         GC.SuppressFinalize(this);
 
-        await _client.DisposeAsync();
+        return _client.DisposeAsync();
     }
 }

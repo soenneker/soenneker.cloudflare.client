@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using System;
 using CloudFlare.Client;
+using System.Threading;
 
 namespace Soenneker.Cloudflare.Client.Abstract;
 
@@ -9,5 +10,5 @@ namespace Soenneker.Cloudflare.Client.Abstract;
 /// </summary>
 public interface ICloudflareClientUtil : IDisposable, IAsyncDisposable
 {
-    ValueTask<CloudFlareClient> Get();
+    ValueTask<CloudFlareClient> Get(CancellationToken cancellationToken = default);
 }
