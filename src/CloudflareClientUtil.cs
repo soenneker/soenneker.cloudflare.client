@@ -18,7 +18,7 @@ public class CloudflareClientUtil : ICloudflareClientUtil
 
     public CloudflareClientUtil(ILogger<CloudflareClientUtil> logger, IConfiguration config)
     {
-        _client = new AsyncSingleton<CloudFlareClient>( () =>
+        _client = new AsyncSingleton<CloudFlareClient>(() =>
         {
             var email = config.GetValueStrict<string>("Cloudflare:Email");
             var apiKey = config.GetValueStrict<string>("Cloudflare:ApiKey");
