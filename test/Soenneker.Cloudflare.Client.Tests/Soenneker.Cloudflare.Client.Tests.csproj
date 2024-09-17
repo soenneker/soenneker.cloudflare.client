@@ -31,7 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\src\Soenneker.Cloudflare.Client.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.Cloudflare.Client.csproj" />
     </ItemGroup>
 
 </Project>
