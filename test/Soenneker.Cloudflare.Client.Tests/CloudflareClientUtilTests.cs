@@ -14,4 +14,10 @@ public class CloudflareClientUtilTests : FixturedUnitTest
     {
         _util = Resolve<ICloudflareClientUtil>(true);
     }
+
+    [Fact]
+    public void Default()
+    {
+
+    }
 }
