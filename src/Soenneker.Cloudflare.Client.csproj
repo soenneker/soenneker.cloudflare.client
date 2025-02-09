@@ -43,6 +43,6 @@
         <PackageReference Include="CloudFlare.Client" Version="6.3.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.1" />
         <PackageReference Include="Soenneker.Extensions.Configuration" Version="3.0.631" />
-        <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="3.0.626" />
+        <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="3.0.633" />
     </ItemGroup>
 </Project>
