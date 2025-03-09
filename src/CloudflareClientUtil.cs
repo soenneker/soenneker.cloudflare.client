@@ -27,9 +27,7 @@ public class CloudflareClientUtil : ICloudflareClientUtil
 
             logger.LogInformation("Connecting to Cloudflare...");
 
-            var client = new CloudFlareClient(authentication);
-
-            return client;
+            return new CloudFlareClient(authentication);
         });
     }
 
