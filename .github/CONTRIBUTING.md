@@ -1,4 +1,4 @@
-# Contributing to Soenneker.Cloudflare.Client
+﻿# Contributing to Soenneker.Cloudflare.Client
 
 We're excited that you're interested in contributing!
 
