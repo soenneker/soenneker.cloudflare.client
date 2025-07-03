@@ -12,7 +12,7 @@ using Soenneker.Utils.AsyncSingleton;
 namespace Soenneker.Cloudflare.Client;
 
 /// <inheritdoc cref="ICloudflareClientUtil"/>
-public class CloudflareClientUtil : ICloudflareClientUtil
+public sealed class CloudflareClientUtil : ICloudflareClientUtil
 {
     private readonly AsyncSingleton<CloudFlareClient> _client;
 
@@ -38,15 +38,11 @@ public class CloudflareClientUtil : ICloudflareClientUtil
 
     public void Dispose()
     {
-        GC.SuppressFinalize(this);
-
         _client.Dispose();
     }
 
     public ValueTask DisposeAsync()
     {
-        GC.SuppressFinalize(this);
-
         return _client.DisposeAsync();
     }
 }
