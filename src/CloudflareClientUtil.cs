@@ -15,20 +15,26 @@ namespace Soenneker.Cloudflare.Client;
 public sealed class CloudflareClientUtil : ICloudflareClientUtil
 {
     private readonly AsyncSingleton<CloudFlareClient> _client;
+    private readonly ILogger<CloudflareClientUtil> _logger;
+    private readonly IConfiguration _config;
 
     public CloudflareClientUtil(ILogger<CloudflareClientUtil> logger, IConfiguration config)
     {
-        _client = new AsyncSingleton<CloudFlareClient>(() =>
-        {
-            var email = config.GetValueStrict<string>("Cloudflare:Email");
-            var apiKey = config.GetValueStrict<string>("Cloudflare:ApiKey");
+        _logger = logger;
+        _config = config;
+        _client = new AsyncSingleton<CloudFlareClient>(CreateClient);
+    }
 
-            var authentication = new ApiKeyAuthentication(email, apiKey);
+    private CloudFlareClient CreateClient()
+    {
+        var email = _config.GetValueStrict<string>("Cloudflare:Email");
+        var apiKey = _config.GetValueStrict<string>("Cloudflare:ApiKey");
 
-            logger.LogInformation("Connecting to Cloudflare...");
+        var authentication = new ApiKeyAuthentication(email, apiKey);
 
-            return new CloudFlareClient(authentication);
-        });
+        _logger.LogInformation("Connecting to Cloudflare...");
+
+        return new CloudFlareClient(authentication);
     }
 
     public ValueTask<CloudFlareClient> Get(CancellationToken cancellationToken = default)
