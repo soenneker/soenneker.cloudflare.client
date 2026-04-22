@@ -1,21 +1,20 @@
 using Soenneker.Cloudflare.Client.Abstract;
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Tests.HostedUnit;
 
 
 namespace Soenneker.Cloudflare.Client.Tests;
 
-[Collection("Collection")]
-public class CloudflareClientUtilTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public class CloudflareClientUtilTests : HostedUnitTest
 {
     private readonly ICloudflareClientUtil _util;
 
-    public CloudflareClientUtilTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public CloudflareClientUtilTests(Host host) : base(host)
     {
         _util = Resolve<ICloudflareClientUtil>(true);
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
